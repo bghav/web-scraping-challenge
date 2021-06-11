@@ -1,26 +1,25 @@
-# import necessary libraries
 from flask import Flask, render_template
+import pymongo
 
-# create instance of Flask app
 app = Flask(__name__)
 
-# Set variables
-name = "Aaron"
-hobby = "Baseball"
+# setup mongo connection
+conn = "mongodb://localhost:27017"
+client = pymongo.MongoClient(conn)
+
+# connect to mongo db and collection
+db = client.store_inventory
+produce = db.produce
 
 
-# create route that renders index.html template
 @app.route("/")
-def echo():
+def scrape():
+    # write a statement that finds all the items in the db and sets it to a variable
+    inventory = list(produce.find())
+    print(inventory)
 
-    return render_template("index.html", name=name, hobby=hobby)
-
-
-# Bonus add a new route
-@app.route("/bonus")
-def bonus():
-
-    return render_template("bonus.html", name=name, hobby=hobby)
+    # render an index.html template and pass it the data you retrieved from the database
+    return render_template("index.html", inventory=inventory)
 
 
 if __name__ == "__main__":
