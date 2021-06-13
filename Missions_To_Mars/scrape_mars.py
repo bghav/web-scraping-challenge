@@ -80,3 +80,8 @@ def scrape():
     "hemisphere":hemisphere
     }
     return mars_dict
+
+if __name__ == "__main__":
+
+    # If running as script, print scraped data
+    print(scrape())

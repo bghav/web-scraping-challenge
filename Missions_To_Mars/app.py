@@ -29,10 +29,5 @@ def scrape():
     # Redirect back to home page
     return redirect("/")
 
-#if __name__ == "__main__":
-   # app.run(debug=True)
-
 if __name__ == "__main__":
-
-    # If running as script, print scraped data
-    print(scrape())
+   app.run(debug=True)
