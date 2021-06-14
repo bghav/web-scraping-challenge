@@ -12,10 +12,10 @@ mongo = PyMongo(app)
 def home():
 
     # Find one record of data from the mongo database
-    destination_data = mongo.db.collection.find_one()
+    mars_data = mongo.db.collection.find_one()
 
     # Return template and data
-    return render_template("index.html", vacation=destination_data)
+    return render_template("index.html",marsd=mars_data)
 
 @app.route("/scrape")
 def scrape():
