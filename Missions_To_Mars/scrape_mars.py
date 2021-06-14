@@ -6,20 +6,24 @@ import requests
 import os
 
 def scrape_headline(browser):
-     # URL of page to be scraped
+
+    # URL of page to be scraped
     url = 'https://redplanetscience.com/'
     browser.visit(url)
 
     html = browser.html
     news_soup = bs(html, 'html.parser')
-
+    
+    
     slide_elem = news_soup.select_one('div.list_text')
 
     news_title = slide_elem.find('div', class_='content_title').get_text()
-    news_title 
-    
+    news_title
     news_p = slide_elem.find('div', class_='article_teaser_body').get_text()
     news_p
+        
+    print(news_title)
+    print(news_p)
 
     return news_title, news_p
 
@@ -40,6 +44,8 @@ def scrape_mfacts(browser):
     browser.visit(url)
     
     mars_facts = pd.read_html("https://galaxyfacts-mars.com")[0]
+
+    print(mars_facts.to_string())
 
     return mars_facts
 
